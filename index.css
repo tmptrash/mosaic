@@ -1,0 +1,10 @@
+.img-url {
+  width: 680px;
+}
+.index, .cell {
+  margin-bottom: 15px;
+}
+
+.cell-input {
+  width: 40px;
+}
