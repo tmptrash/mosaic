@@ -1,10 +1,13 @@
 .img-url {
-  width: 680px;
+  width: 480px;
 }
 .index, .cell {
   margin-bottom: 15px;
 }
-
 .cell-input {
   width: 40px;
+}
+#status {
+  margin-top: 10px;
+  color: #a00;
 }

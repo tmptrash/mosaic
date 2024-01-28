@@ -1,9 +1,10 @@
 import CFG from './cfg'
+import { el } from './helper'
 
 export function MapMosaic(mi, mc) {
   const canvas = el(CFG.canvasQuery)
-  canvas.width = mc.w
-  canvas.height = mc.h
+  canvas.width = mc.imgWidth
+  canvas.height = mc.imgHeight
   return {
     canvas,
     mi,
@@ -20,7 +21,7 @@ export function map(mm) {
     for (let r = 0, rows = mm.mc.imgHeight / h; r < rows; r++) {
       const x = r * w
       const y = c * h
-      const img = imgs[0] // TODO:
+      const img = imgs[0] // TODO: image find algorithm should be here
       ctx.drawImage(img, 0, 0, ...wh(w, h, img.width, img.height), x, y, w, h)
     }
   }

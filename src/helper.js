@@ -47,5 +47,11 @@ export function color(ctx, img, x0 = 0, y0 = 0, x1 = -1, y1 = -1) {
     b += d[i + 2]
   }
   l /= 4
-  return [Math.floor(r / l), Math.floor(g / l), Math.floor(b / l)]
+  return [fl(r / l), fl(g / l), fl(b / l)]
+}
+
+export const fl = Math.floor
+
+export function isInt(n) {
+  return Number.isInteger(parseInt(n))
 }

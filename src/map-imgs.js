@@ -17,12 +17,12 @@ export function MapImgs() {
   })
 }
 
-export function onMapImgs(mi, cb) {
+export function onMapImgs(mi, server, cb) {
   mi.file = 0
   mi.map = []
   mi.imgs = []
   mi.mapDoneCb = cb
-  load(`${CFG.fileServer}${mi.file}.png`, mi.onImg, mi.OnErr)
+  load(`${server}/${mi.file}.png`, mi.onImg, mi.OnErr)
 }
 
 function onErr(mi) {

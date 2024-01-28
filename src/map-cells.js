@@ -9,11 +9,9 @@ export function MapCells() {
     canvas: null,
     ctx: null,
     statusEl: el(CFG.statusQuery),
-    loadPathEl: el(CFG.imgUrlQuery),
-    cellWidthEl: el(CFG.cellWidthQuery),
-    cellHeightEl: el(CFG.cellHeightQuery),
     onImg: bind(onImg, mc),
     onErr: bind(onErr, mc),
+    url: null,
     cellWidth: 0,
     cellHeight: 0,
     imgWidth: 0,
@@ -21,14 +19,17 @@ export function MapCells() {
   })
 }
 
-export function onMapCells(mc, cb) {
+export function onMapCells(mc, cw, ch, url, cb) {
+  mc.url = url
+  mc.cellWidth = cw
+  mc.cellHeight = ch
   mc.map = []
   mc.mapDoneCb = cb
-  load(mc.loadPathEl.value, mc.onImg, mc.OnErr)
+  load(url, mc.onImg, mc.OnErr)
 }
 
 function onErr(mc) {
-  mc.statusEl.innerText = `Error loading: ${CFG.imgUrlQuery}`
+  mc.statusEl.innerText = `Error loading: ${mc.url}`
 }
   
 function onImg(mc, e) {
@@ -36,8 +37,8 @@ function onImg(mc, e) {
   mc.ctx = mc.canvas.getContext('2d')
   const img = e.target
   const map = mc.map
-  let w = mc.cellWidth = +mc.cellWidthEl.value
-  let h = mc.cellHeight = +mc.cellHeightEl.value
+  let w = mc.cellWidth
+  let h = mc.cellHeight
   mc.imgWidth = img.width
   mc.imgHeight = img.height
   if (img.width % w !== 0) {

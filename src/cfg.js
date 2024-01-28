@@ -3,7 +3,7 @@ export default {
   imgUrlQuery: '#img-url',
   cellWidthQuery: '#cell-width',
   cellHeightQuery: '#cell-height',
-  loadQuery: '#load',
+  genQuery: '#generate',
   mapQuery: '#index',
   statusQuery: '#status',
   fileServer: 'http://localhost:8080/',
