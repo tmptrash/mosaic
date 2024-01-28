@@ -13,18 +13,33 @@ export function MapMosaic(mi, mc) {
 }
 
 export function map(mm) {
+  const m = mm.mc.map
   const ctx = mm.canvas.getContext('2d')
   const w = mm.mc.cellWidth
   const h = mm.mc.cellHeight
   const imgs = mm.mi.imgs
+  const mi = mm.mi
+  let i = 0
   for (let c = 0, cols = mm.mc.imgWidth / w; c < cols; c++) {
     for (let r = 0, rows = mm.mc.imgHeight / h; r < rows; r++) {
       const x = r * w
       const y = c * h
-      const img = imgs[0] // TODO: image find algorithm should be here
+      const img = findImg(m[i], m[i + 1], m[i + 2], mi)
       ctx.drawImage(img, 0, 0, ...wh(w, h, img.width, img.height), x, y, w, h)
+      i += 3
     }
   }
+}
+
+function findImg(r, g, b, mi) {
+  let dist = -1
+  let idx = -1
+  const m = mi.map
+  for (let i = 0, l = mi.map.length; i < l; i += 3) {
+    const d = Math.sqrt((r - m[i])**2 + (g - m[i+1])**2 + (b - m[i+2])**2)
+    if (idx === -1 || d < dist) dist = d, idx = i / 3
+  }
+  return mi.imgs[idx]
 }
 
 function wh(cw, ch, iw, ih) {
