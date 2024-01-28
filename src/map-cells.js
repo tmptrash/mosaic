@@ -54,7 +54,7 @@ function onImg(mc, e) {
     for (let r = 0, rows = img.height / h; r < rows; r++) {
       const x = r * w
       const y = c * h
-      map.push(...color(mc.ctx, null, x, y, x + w, y + h))
+      map.push(...color(mc.ctx, null, x, y, w, h))
     }
   }
   mc.mapDoneCb()

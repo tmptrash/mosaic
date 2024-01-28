@@ -34,12 +34,12 @@ export function bind(fn, ...args) {
   return fn.bind(null, ...args)
 }
 
-export function color(ctx, img, x0 = 0, y0 = 0, x1 = -1, y1 = -1) {
-  x1 = x1 === -1 ? img.width  : x1
-  y1 = y1 === -1 ? img.height : y1
+export function color(ctx, img, x = 0, y = 0, w = -1, h = -1) {
+  w = w === -1 ? img.width  : w
+  h = h === -1 ? img.height : h
   let r = 0, g = 0, b = 0
   img && ctx.drawImage(img, 0, 0)
-  const d = ctx.getImageData(x0, y0, x1, y1).data
+  const d = ctx.getImageData(x, y, w, h).data
   let l = d.length
   for (let i = 0; i < l; i += 4) {
     r += d[i]

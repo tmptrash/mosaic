@@ -15,6 +15,7 @@ export function Mosaic() {
   const mc = MapCells()
   const m = {}
   mix(m, {
+    // TODO: remove duplication
     mi,
     mc,
     mm: null,
@@ -24,7 +25,7 @@ export function Mosaic() {
     imgPathEl: el(CFG.imgUrlQuery),
     listeners: [
       //[CFG.mapQuery, 'click', bind(onMapImgs, mi, bind(onMapImgsDone, mi))],
-      [CFG.genQuery, 'click', bind(onLoad, m)]
+      [CFG.genQuery, 'click', bind(onGenerate, m)]
       //[window, 'message', e => e.data === 0 && (e.stopPropagation() || step())]
     ]
   })
@@ -32,7 +33,7 @@ export function Mosaic() {
   return m
 }
 
-function onLoad(m) {
+function onGenerate(m) {
   if (!checkInputs(m)) return
   const url = m.imgPathEl.value
   const server = (new URL(url)).origin
