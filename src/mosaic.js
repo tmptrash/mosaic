@@ -1,17 +1,17 @@
 import CFG from './cfg'
 import { ons, bind } from './helper'
-import { onMapFiles, MapFiles } from './map-files'
-import { onMapImg, MapImg } from './map-img'
+import { MapImgs, onMapImgs } from './map-imgs'
+import { MapCells, onMapCells } from './map-cells'
 
 export function Mosaic() {
-  const mf = MapFiles()
-  const mi = MapImg()
+  const mi = MapImgs()
+  const mc = MapCells()
   const m = {
-    mf,
     mi,
+    mc,
     listeners: [
-      [CFG.mapQuery, 'click', bind(onMapFiles, mf, bind(onMapFilesDone, mf))],
-      [CFG.loadQuery, 'click', bind(onMapImg, mi, bind(onMapImgDone, mi))]
+      [CFG.mapQuery, 'click', bind(onMapImgs, mi, bind(onMapImgsDone, mi))],
+      [CFG.loadQuery, 'click', bind(onMapCells, mc, bind(onMapCellsDone, mc))]
       //[window, 'message', e => e.data === 0 && (e.stopPropagation() || step())]
     ]
   }
@@ -19,10 +19,10 @@ export function Mosaic() {
   return m
 }
 
-function onMapFilesDone(mf) {
+function onMapImgsDone(mi) {
   console.log('Map files done!')
 }
 
-function onMapImgDone(mi) {
-  console.log('Map img done!')
+function onMapCellsDone(mc) {
+  console.log('Map cells done!')
 }

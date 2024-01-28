@@ -1,6 +1,8 @@
 export default {
+  canvasQuery: '#canvas',
   imgUrlQuery: '#img-url',
-  cellSizeQuery: '#cell-size',
+  cellWidthQuery: '#cell-width',
+  cellHeightQuery: '#cell-height',
   loadQuery: '#load',
   mapQuery: '#index',
   statusQuery: '#status',
