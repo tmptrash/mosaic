@@ -5,6 +5,7 @@ export default {
   cellWidthQuery: '#cell-width',
   cellHeightQuery: '#cell-height',
   genQuery: '#generate',
+  downloadQuery: '#download',
   mapQuery: '#index',
   statusQuery: '#status',
   imgMaxWidth: 1024,

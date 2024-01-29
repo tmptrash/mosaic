@@ -1,13 +1,30 @@
+body {
+  background-color: #000;
+  color: #ccc;
+  font-family: monospace;
+}
+input {
+  margin-right: 20px;
+}
+button {
+  margin-right: 10px;
+}
+
 .img-url {
   width: 480px;
 }
 .index, .cell {
   margin-bottom: 15px;
 }
+.cell {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .cell-input {
-  width: 40px;
+  width: 30px;
 }
 #status {
-  margin-top: 10px;
-  color: #a00;
+  color: rgb(51 153 74);
+  margin-left: 20px;
 }

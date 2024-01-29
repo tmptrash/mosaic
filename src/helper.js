@@ -1,3 +1,5 @@
+import CFG from './cfg'
+
 export function load(path, cb, errCb) {
   const img = new Image()
   img.onload = cb
@@ -54,4 +56,8 @@ export const fl = Math.floor
 
 export function isInt(n) {
   return Number.isInteger(parseInt(n))
+}
+
+export function status(s) {
+  el(CFG.statusQuery).innerText = s
 }

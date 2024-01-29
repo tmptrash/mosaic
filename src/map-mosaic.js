@@ -1,27 +1,24 @@
 import CFG from './cfg'
-import { el,fl } from './helper'
+import { el, fl } from './helper'
 
-export function MapMosaic(mi, mc) {
+export function MapMosaic(mc) {
   const canvas = el(CFG.canvasQuery)
   canvas.width = mc.imgWidth
   canvas.height = mc.imgHeight
   return {
-    canvas,
-    mi,
-    mc
+    canvas
   }
 }
 
-export function map(mm) {
-  const m = mm.mc.map
+export function map(mm, mi, mc) {
+  const m = mc.map
   const ctx = mm.canvas.getContext('2d')
-  const w = mm.mc.cellWidth
-  const h = mm.mc.cellHeight
-  const imgs = mm.mi.imgs
-  const mi = mm.mi
+  const w = mc.cellWidth
+  const h = mc.cellHeight
+  const imgs = mi.imgs
   let i = 0
-  for (let c = 0, cols = fl(mm.mc.imgWidth / w); c < cols; c++) {
-    for (let r = 0, rows = fl(mm.mc.imgHeight / h); r < rows; r++) {
+  for (let c = 0, cols = fl(mc.imgWidth / w); c < cols; c++) {
+    for (let r = 0, rows = fl(mc.imgHeight / h); r < rows; r++) {
       const x = c * w
       const y = r * h
       const img = findImg(m[i], m[i + 1], m[i + 2], mi)

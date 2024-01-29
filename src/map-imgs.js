@@ -1,5 +1,5 @@
 import CFG from './cfg'
-import { el, canvas, bind, mix, load, color } from './helper'
+import { status, canvas, bind, mix, load, color } from './helper'
 
 export function MapImgs() {
   const c = canvas(CFG.imgMaxWidth, CFG.imgMaxHeight)
@@ -13,8 +13,7 @@ export function MapImgs() {
     ctx: c.getContext('2d'),
     file: 0,
     onImg: bind(onImg, mi),
-    onErr: bind(onErr, mi),
-    statusEl: el(CFG.statusQuery)
+    onErr: bind(onErr, mi)
   })
 }
 
@@ -32,7 +31,7 @@ function onErr(mi) {
 }
   
 function onImg(mi, e) {
-  mi.statusEl.innerText = `Processed: n${mi.file}.jpg`
+  status(`Processed: n${mi.file}.jpg`)
   mi.map.push(...color(mi.ctx, e.target))
   mi.imgs.push(e.target)
   mi.file++

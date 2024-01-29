@@ -1,5 +1,5 @@
 import CFG from './cfg'
-import { ons, bind, mix, el, isInt } from './helper'
+import { ons, bind, mix, el, isInt, status } from './helper'
 import { MapImgs, onMapImgs } from './map-imgs'
 import { MapCells, onMapCells } from './map-cells'
 import { MapMosaic, map } from './map-mosaic'
@@ -15,18 +15,15 @@ export function Mosaic() {
   const mc = MapCells()
   const m = {}
   mix(m, {
-    // TODO: remove duplication
     mi,
     mc,
     mm: null,
-    statusEl: el(CFG.statusQuery),
     cellWidthEl: el(CFG.cellWidthQuery),
     cellHeightEl: el(CFG.cellHeightQuery),
     imgPathEl: el(CFG.imgUrlQuery),
     listeners: [
-      //[CFG.mapQuery, 'click', bind(onMapImgs, mi, bind(onMapImgsDone, mi))],
       [CFG.genQuery, 'click', bind(onGenerate, m)],
-      ['#download', 'click', onDownload]
+      [CFG.downloadQuery, 'click', onDownload]
       //[window, 'message', e => e.data === 0 && (e.stopPropagation() || step())]
     ]
   })
@@ -47,14 +44,15 @@ function onGenerate(m) {
 }
 
 function onMapCellsDone(m) {
-  m.mm = MapMosaic(m.mi, m.mc)
-  map(m.mm)
+  m.mm = MapMosaic(m.mc)
+  map(m.mm, m.mi, m.mc)
+  status('Done')
 }
 
 function checkInputs(m) {
   for (let r of RULES) {
     if (r[0](m)) {
-      m.statusEl.innerText = r[1](m)
+      status(r[1](m))
       return false
     }
   }

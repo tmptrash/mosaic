@@ -1,5 +1,5 @@
 import CFG from './cfg'
-import { el, canvas, bind, mix, load, color, fl } from './helper'
+import { status, canvas, bind, mix, load, color, fl } from './helper'
 
 export function MapCells() {
   const mc = {}
@@ -8,7 +8,6 @@ export function MapCells() {
     mapDoneCb: () => {},
     canvas: null,
     ctx: null,
-    statusEl: el(CFG.statusQuery),
     onImg: bind(onImg, mc),
     onErr: bind(onErr, mc),
     url: null,
@@ -20,6 +19,7 @@ export function MapCells() {
 }
 
 export function onMapCells(mc, cw, ch, url, cb) {
+  status('Generating final image. Please wait...')
   mc.url = url
   mc.cellWidth = cw
   mc.cellHeight = ch
@@ -29,7 +29,7 @@ export function onMapCells(mc, cw, ch, url, cb) {
 }
 
 function onErr(mc) {
-  mc.statusEl.innerText = `Error loading: ${mc.url}`
+  status(`Error loading: ${mc.url}`)
 }
   
 function onImg(mc, e) {
