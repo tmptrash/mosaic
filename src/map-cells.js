@@ -1,4 +1,3 @@
-import CFG from './cfg'
 import { status, canvas, bind, mix, load, color, fl } from './helper'
 
 export function MapCells() {

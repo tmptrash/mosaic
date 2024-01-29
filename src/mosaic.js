@@ -24,7 +24,6 @@ export function Mosaic() {
     listeners: [
       [CFG.genQuery, 'click', bind(onGenerate, m)],
       [CFG.downloadQuery, 'click', onDownload]
-      //[window, 'message', e => e.data === 0 && (e.stopPropagation() || step())]
     ]
   })
   ons(m.listeners)
@@ -46,7 +45,7 @@ function onGenerate(m) {
 function onMapCellsDone(m) {
   m.mm = MapMosaic(m.mc)
   map(m.mm, m.mi, m.mc)
-  status('Done')
+  status('')
 }
 
 function checkInputs(m) {
@@ -56,7 +55,6 @@ function checkInputs(m) {
       return false
     }
   }
-  
   return true
 }
 
