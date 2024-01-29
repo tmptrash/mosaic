@@ -22,7 +22,7 @@ export function onMapImgs(mi, server, cb) {
   mi.map = []
   mi.imgs = []
   mi.mapDoneCb = cb
-  load(`${server}/${mi.file}.png`, mi.onImg, mi.OnErr)
+  load(`${server}/${mi.file}.jpg`, mi.onImg, mi.OnErr)
 }
 
 function onErr(mi) {
@@ -30,9 +30,9 @@ function onErr(mi) {
 }
   
 function onImg(mi, e) {
-  mi.statusEl.innerText = `Processed: ${mi.file}.png`
+  mi.statusEl.innerText = `Processed: ${mi.file}.jpg`
   mi.map.push(...color(mi.ctx, e.target))
   mi.imgs.push(e.target)
   mi.file++
-  load(`${CFG.fileServer}${mi.file}.png`, mi.onImg, mi.onErr)
+  load(`${CFG.fileServer}${mi.file}.jpg`, mi.onImg, mi.onErr)
 }

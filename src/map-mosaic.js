@@ -1,5 +1,5 @@
 import CFG from './cfg'
-import { el } from './helper'
+import { el,fl } from './helper'
 
 export function MapMosaic(mi, mc) {
   const canvas = el(CFG.canvasQuery)
@@ -20,10 +20,10 @@ export function map(mm) {
   const imgs = mm.mi.imgs
   const mi = mm.mi
   let i = 0
-  for (let c = 0, cols = mm.mc.imgWidth / w; c < cols; c++) {
-    for (let r = 0, rows = mm.mc.imgHeight / h; r < rows; r++) {
-      const x = r * w
-      const y = c * h
+  for (let c = 0, cols = fl(mm.mc.imgWidth / w); c < cols; c++) {
+    for (let r = 0, rows = fl(mm.mc.imgHeight / h); r < rows; r++) {
+      const x = c * w
+      const y = r * h
       const img = findImg(m[i], m[i + 1], m[i + 2], mi)
       ctx.drawImage(img, 0, 0, ...wh(w, h, img.width, img.height), x, y, w, h)
       i += 3

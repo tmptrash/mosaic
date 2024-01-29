@@ -1,5 +1,5 @@
 import CFG from './cfg'
-import { el, canvas, bind, mix, load, color } from './helper'
+import { el, canvas, bind, mix, load, color, fl } from './helper'
 
 export function MapCells() {
   const mc = {}
@@ -41,19 +41,11 @@ function onImg(mc, e) {
   let h = mc.cellHeight
   mc.imgWidth = img.width
   mc.imgHeight = img.height
-  if (img.width % w !== 0) {
-    mc.statusEl.innerText = `Invalid cell width: ${w}. It should be multiple to image width`
-    return
-  }
-  if (img.height % h !== 0) {
-    mc.statusEl.innerText = `Invalid cell height: ${h}. It should be multiple to image height`
-    return
-  }
   mc.ctx.drawImage(img, 0, 0)
-  for (let c = 0, cols = img.width / w; c < cols; c++) {
-    for (let r = 0, rows = img.height / h; r < rows; r++) {
-      const x = r * w
-      const y = c * h
+  for (let c = 0, cols = fl(img.width / w); c < cols; c++) {
+    for (let r = 0, rows = fl(img.height / h); r < rows; r++) {
+      const x = c * w
+      const y = r * h
       map.push(...color(mc.ctx, null, x, y, w, h))
     }
   }
