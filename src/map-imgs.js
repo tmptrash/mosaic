@@ -7,6 +7,7 @@ export function MapImgs() {
   return mix(mi, {
     map: [],
     imgs: [],
+    server: null,
     mapDoneCb: () => {},
     canvas: c,
     ctx: c.getContext('2d'),
@@ -22,7 +23,8 @@ export function onMapImgs(mi, server, cb) {
   mi.map = []
   mi.imgs = []
   mi.mapDoneCb = cb
-  load(`${server}/${mi.file}.jpg`, mi.onImg, mi.OnErr)
+  mi.server = server
+  load(`${server}/n${mi.file}.jpg`, mi.onImg, mi.OnErr)
 }
 
 function onErr(mi) {
@@ -30,9 +32,9 @@ function onErr(mi) {
 }
   
 function onImg(mi, e) {
-  mi.statusEl.innerText = `Processed: ${mi.file}.jpg`
+  mi.statusEl.innerText = `Processed: n${mi.file}.jpg`
   mi.map.push(...color(mi.ctx, e.target))
   mi.imgs.push(e.target)
   mi.file++
-  load(`${CFG.fileServer}${mi.file}.jpg`, mi.onImg, mi.onErr)
+  load(`${mi.server}/n${mi.file}.jpg`, mi.onImg, mi.onErr)
 }

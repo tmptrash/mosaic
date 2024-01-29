@@ -25,7 +25,8 @@ export function Mosaic() {
     imgPathEl: el(CFG.imgUrlQuery),
     listeners: [
       //[CFG.mapQuery, 'click', bind(onMapImgs, mi, bind(onMapImgsDone, mi))],
-      [CFG.genQuery, 'click', bind(onGenerate, m)]
+      [CFG.genQuery, 'click', bind(onGenerate, m)],
+      ['#download', 'click', onDownload]
       //[window, 'message', e => e.data === 0 && (e.stopPropagation() || step())]
     ]
   })
@@ -59,4 +60,11 @@ function checkInputs(m) {
   }
   
   return true
+}
+
+function onDownload() {
+  const link = el(CFG.linkQuery)
+  link.setAttribute('download', 'mosaic.png')
+  link.setAttribute('href', el(CFG.canvasQuery).toDataURL().replace("image/png", "image/octet-stream"))
+  link.click()
 }
