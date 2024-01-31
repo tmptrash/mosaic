@@ -8,3 +8,6 @@ Prepare a folder with images (in our example it's called `imgs`). Find as many i
 `npx http-server ./imgs --cors` to run local server with images\
 `npm run start` - to run mosaic in a dev mode\
 `npm run build` - to build mosaic in production
+
+# screenshot
+![mosaic-me12x12](https://github.com/tmptrash/mosaic/assets/1142545/8eadcb90-551b-4282-b257-096dde8946d1)
