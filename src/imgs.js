@@ -1,5 +1,5 @@
 import CFG from './cfg'
-import { status, canvas, fn, mix, load, color } from './helper'
+import { inf, canvas, fn, mix, load, color } from './helper'
 
 export function Imgs() {
   const c = canvas(CFG.imgMaxWidth, CFG.imgMaxHeight)
@@ -35,7 +35,7 @@ function onErr(imgs) {
 }
 
 function onImg(imgs, e) {
-  status(`Processed: n${imgs.file}.jpg`)
+  inf(`Processed: n${imgs.file}.jpg`)
   imgs.map.push(...color(imgs.ctx, e.target))
   imgs.imgs.push(e.target)
   imgs.file++

@@ -1,4 +1,4 @@
-import { status, canvas, fn, mix, load, color, fl } from './helper'
+import { inf, canvas, fn, mix, load, color, fl } from './helper'
 
 export function Cells() {
   const cells = {}
@@ -19,7 +19,7 @@ export function Cells() {
 }
 
 export function map(cells, cw, ch, url) {
-  status('Generating final image. Please wait...')
+  inf('Generating final image...')
   cells.url = url
   cells.cellWidth = cw
   cells.cellHeight = ch
@@ -32,7 +32,7 @@ export function map(cells, cw, ch, url) {
 }
 
 function onErr(cells) {
-  status(`Error loading: ${cells.url}`)
+  inf(`Error loading: ${cells.url}`)
   cells.err()
 }
   

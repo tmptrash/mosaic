@@ -1,9 +1,9 @@
 import './../index.css'
 import CFG from './cfg'
-import { ons, fn, mix, el, isInt, status } from './helper'
+import { ons, fn, mix, el, isInt, inf } from './helper'
 import { Imgs, map as mapImgs } from './imgs'
 import { Cells, map as mapCells } from './cells'
-import {  map as mapMosaic } from './mosaic'
+import { map as mapMosaic } from './mosaic'
 
 const RULES = [
   [a => !isInt(a.cellWidthEl.value), a => `Invalid cell width: "${a.cellWidthEl.value}".`],
@@ -44,15 +44,15 @@ function onGenerate(a) {
     .then(fn(onCellsDone, a))
 }
 
-function onCellsDone(app) {
-  mapMosaic(app.imgs, app.cells)
-  status('')
+function onCellsDone(a) {
+  mapMosaic(a.imgs, a.cells)
+  inf(`Imgs: ${a.imgs.imgs.length}`)
 }
 
-function checkInputs(app) {
+function checkInputs(a) {
   for (let r of RULES) {
-    if (r[0](app)) {
-      status(r[1](app))
+    if (r[0](a)) {
+      inf(r[1](a))
       return false
     }
   }

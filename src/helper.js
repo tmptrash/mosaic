@@ -58,6 +58,6 @@ export function isInt(n) {
   return Number.isInteger(parseInt(n))
 }
 
-export function status(s) {
+export function inf(s) {
   el(CFG.statusQuery).innerText = s
 }
