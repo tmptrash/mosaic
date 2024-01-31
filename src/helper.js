@@ -32,7 +32,7 @@ export function mix(o1, o2) {
   return Object.assign(o1, o2)
 }
 
-export function bind(fn, ...args) {
+export function fn(fn, ...args) {
   return fn.bind(null, ...args)
 }
 

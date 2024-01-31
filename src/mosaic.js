@@ -1,66 +1,39 @@
 import CFG from './cfg'
-import { ons, bind, mix, el, isInt, status } from './helper'
-import { MapImgs, onMapImgs } from './map-imgs'
-import { MapCells, onMapCells } from './map-cells'
-import { MapMosaic, map } from './map-mosaic'
+import { el, fl } from './helper'
 
-const RULES = [
-  [m => !isInt(m.cellWidthEl.value), m => `Invalid cell width: "${m.cellWidthEl.value}".`],
-  [m => !isInt(m.cellHeightEl.value), m => `Invalid cell height: "${m.cellHeightEl.value}".`],
-  [m => m.imgPathEl.value === '', m => `Error loading image: "${m.imgPathEl.value}".`]
-]
-
-export function Mosaic() {
-  const mi = MapImgs()
-  const mc = MapCells()
-  const m = {}
-  mix(m, {
-    mi,
-    mc,
-    mm: null,
-    cellWidthEl: el(CFG.cellWidthQuery),
-    cellHeightEl: el(CFG.cellHeightQuery),
-    imgPathEl: el(CFG.imgUrlQuery),
-    listeners: [
-      [CFG.genQuery, 'click', bind(onGenerate, m)],
-      [CFG.downloadQuery, 'click', onDownload]
-    ]
-  })
-  ons(m.listeners)
-  return m
-}
-
-function onGenerate(m) {
-  if (!checkInputs(m)) return
-  const url = m.imgPathEl.value
-  const server = (new URL(url)).origin
-  const cw = +m.cellWidthEl.value
-  const ch = +m.cellHeightEl.value
-  // TODO: think about this code
-  const cb = bind(onMapCellsDone, m)
-  if (!m.mi.map.length) onMapImgs(m.mi, server, bind(onMapCells, m.mc, cw, ch, url, cb))
-  else onMapCells(m.mc, cw, ch, url, cb)
-}
-
-function onMapCellsDone(m) {
-  m.mm = MapMosaic(m.mc)
-  map(m.mm, m.mi, m.mc)
-  status('')
-}
-
-function checkInputs(m) {
-  for (let r of RULES) {
-    if (r[0](m)) {
-      status(r[1](m))
-      return false
+export function map(imgs, cells) {
+  const canvas = el(CFG.canvasQuery)
+  canvas.width = cells.imgWidth
+  canvas.height = cells.imgHeight
+  const map = cells.map
+  const ctx = canvas.getContext('2d')
+  const w = cells.cellWidth
+  const h = cells.cellHeight
+  let i = 0
+  for (let c = 0, cols = fl(cells.imgWidth / w); c < cols; c++) {
+    for (let r = 0, rows = fl(cells.imgHeight / h); r < rows; r++) {
+      const x = c * w
+      const y = r * h
+      const img = findImg(map[i], map[i + 1], map[i + 2], imgs)
+      ctx.drawImage(img, 0, 0, ...wh(w, h, img.width, img.height), x, y, w, h)
+      i += 3
     }
   }
-  return true
 }
 
-function onDownload() {
-  const link = el(CFG.linkQuery)
-  link.setAttribute('download', 'mosaic.png')
-  link.setAttribute('href', el(CFG.canvasQuery).toDataURL().replace("image/png", "image/octet-stream"))
-  link.click()
+function findImg(r, g, b, imgs) {
+  let dist = -1
+  let idx = -1
+  const m = imgs.map
+  for (let i = 0, l = imgs.map.length; i < l; i += 3) {
+    const d = Math.sqrt((r - m[i])**2 + (g - m[i + 1])**2 + (b - m[i + 2])**2)
+    if (idx === -1 || d < dist) dist = d, idx = i / 3
+  }
+  return imgs.imgs[idx]
+}
+
+function wh(cw, ch, iw, ih) {
+  const c1 = cw / ch
+  const c2 = iw / ih
+  return c1 >= c2 ? [iw, iw / c1] : [ih * c1, ih]
 }
