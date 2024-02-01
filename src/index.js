@@ -60,7 +60,7 @@ function onDownload(cells) {
 
 function onCellsDone(a) {
   mapMosaic(a.imgs, a.cells)
-  inf(`Imgs: ${a.imgs.imgs.length}`)
+  inf(`Imgs used: ${a.imgs.imgs.length}`)
 }
 
 function validate(a) {
