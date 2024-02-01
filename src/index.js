@@ -23,7 +23,7 @@ function App() {
     urlEl: el(CFG.imgUrlQuery),
     listeners: [
       [CFG.genQuery, 'click', fn(onGenerate, m)],
-      [CFG.downloadQuery, 'click', onDownload]
+      [CFG.downloadQuery, 'click', fn(onDownload, cells)]
     ]
   })
   ons(m.listeners)
@@ -47,7 +47,11 @@ function onGenerate(a) {
   }
 }
 
-function onDownload() {
+function onDownload(cells) {
+  if (!cells.map.length) {
+    inf('Generate image first', true)
+    return
+  }
   const link = el(CFG.linkQuery)
   link.setAttribute('download', 'mosaic.png')
   link.setAttribute('href', el(CFG.canvasQuery).toDataURL().replace("image/png", "image/octet-stream"))
