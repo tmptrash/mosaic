@@ -32,7 +32,7 @@ export function map(cells, cw, ch, url) {
 }
 
 function onErr(cells) {
-  inf(`Error loading: ${cells.url}`)
+  inf(`Error loading: ${cells.url}`, true)
   cells.err()
 }
   

@@ -32,15 +32,19 @@ function App() {
 
 function onGenerate(a) {
   if (!checkInputs(a)) return
-  const url = a.imgPathEl.value
-  const server = (new URL(url)).origin
-  const cw = +a.cellWidthEl.value
-  const ch = +a.cellHeightEl.value
-  if (!a.imgs.map.length) mapImgs(a.imgs, server)
-    .then(fn(mapCells, a.cells, cw, ch, url))
-    .then(fn(onCellsDone, a))
-  else mapCells(a.cells, cw, ch, url)
-    .then(fn(onCellsDone, a))
+  try {
+    const url = a.imgPathEl.value
+    const server = (new URL(url)).origin
+    const cw = +a.cellWidthEl.value
+    const ch = +a.cellHeightEl.value
+    if (!a.imgs.map.length) mapImgs(a.imgs, server)
+      .then(fn(mapCells, a.cells, cw, ch, url))
+      .then(fn(onCellsDone, a))
+    else mapCells(a.cells, cw, ch, url)
+     .then(fn(onCellsDone, a))
+  } catch (e) {
+    inf(e, true)
+  }
 }
 
 function onCellsDone(a) {
@@ -51,7 +55,7 @@ function onCellsDone(a) {
 function checkInputs(a) {
   for (let r of RULES) {
     if (r[0](a)) {
-      inf(r[1](a))
+      inf(r[1](a), true)
       return false
     }
   }
