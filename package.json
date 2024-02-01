@@ -1,5 +1,5 @@
 {
-  "name": "mosaic",
+  "name": "photo-mosaic",
   "version": "1.0.0",
   "description": "Photo mosaic algorithm implementation",
   "main": "index.js",
@@ -11,7 +11,10 @@
   },
   "keywords": [
     "photo-mosaic",
-    "js"
+    "vanilla js",
+    "canvas 2d",
+    "images",
+    "promise"
   ],
   "author": "flatline",
   "license": "MIT",

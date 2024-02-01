@@ -18,7 +18,6 @@ function App() {
   mix(m, {
     imgs,
     cells,
-    mosaic: null,
     cellWidthEl: el(CFG.cellWidthQuery),
     cellHeightEl: el(CFG.cellHeightQuery),
     imgPathEl: el(CFG.imgUrlQuery),
