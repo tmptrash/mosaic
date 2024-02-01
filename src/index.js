@@ -31,7 +31,7 @@ function App() {
 }
 
 function onGenerate(a) {
-  if (!checkInputs(a)) return
+  if (!validate(a)) return
   try {
     const url = a.urlEl.value
     const server = (new URL(url)).origin
@@ -47,12 +47,19 @@ function onGenerate(a) {
   }
 }
 
+function onDownload() {
+  const link = el(CFG.linkQuery)
+  link.setAttribute('download', 'mosaic.png')
+  link.setAttribute('href', el(CFG.canvasQuery).toDataURL().replace("image/png", "image/octet-stream"))
+  link.click()
+}
+
 function onCellsDone(a) {
   mapMosaic(a.imgs, a.cells)
   inf(`Imgs: ${a.imgs.imgs.length}`)
 }
 
-function checkInputs(a) {
+function validate(a) {
   for (let r of RULES) {
     if (r[0](a)) {
       inf(r[1](a), true)
@@ -60,13 +67,6 @@ function checkInputs(a) {
     }
   }
   return true
-}
-
-function onDownload() {
-  const link = el(CFG.linkQuery)
-  link.setAttribute('download', 'mosaic.png')
-  link.setAttribute('href', el(CFG.canvasQuery).toDataURL().replace("image/png", "image/octet-stream"))
-  link.click()
 }
 
 //
