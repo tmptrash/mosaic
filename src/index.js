@@ -8,7 +8,7 @@ import { map as mapMosaic } from './mosaic'
 const RULES = [
   [a => !isInt(a.cellWidthEl.value), a => `Invalid cell width: "${a.cellWidthEl.value}".`],
   [a => !isInt(a.cellHeightEl.value), a => `Invalid cell height: "${a.cellHeightEl.value}".`],
-  [a => a.imgPathEl.value === '', a => `Error loading image: "${a.imgPathEl.value}".`]
+  [a => a.urlEl.value === '', a => `Error loading image: "${a.urlEl.value}".`]
 ]
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     cells,
     cellWidthEl: el(CFG.cellWidthQuery),
     cellHeightEl: el(CFG.cellHeightQuery),
-    imgPathEl: el(CFG.imgUrlQuery),
+    urlEl: el(CFG.imgUrlQuery),
     listeners: [
       [CFG.genQuery, 'click', fn(onGenerate, m)],
       [CFG.downloadQuery, 'click', onDownload]
@@ -33,7 +33,7 @@ function App() {
 function onGenerate(a) {
   if (!checkInputs(a)) return
   try {
-    const url = a.imgPathEl.value
+    const url = a.urlEl.value
     const server = (new URL(url)).origin
     const cw = +a.cellWidthEl.value
     const ch = +a.cellHeightEl.value
