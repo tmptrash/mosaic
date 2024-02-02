@@ -4,7 +4,7 @@ Photo mosaic algorithm implementation in pure JS. A photomosaic, is a digital im
 # how to run
 Prepare a folder with jpg images (in our example it's called `imgs`) in this format `nXXX.jpg`. Where `XXX` it's an image index number starting from 0. For example: `n0.jpg, n1.jpg` and so on. We will use them as a source images to build the final (big) picture. Find as many images as you can, because it affects the final picture quality. Install dependencies and run local http-server with `imgs` folder as a parameter. Don't forget to add `--cors` parameter in the end. Run the mosaic app and go to your browser URL `localhost:port` and you will see this simple UI:\
 \
-<img width="1136" alt="image" src="https://github.com/tmptrash/mosaic/assets/1142545/68b1c0be-ce8c-4394-9e92-d349cfdf8477">\
+<img width="1115" alt="image" src="https://github.com/tmptrash/mosaic/assets/1142545/65740fee-19b0-45c4-9411-5128c82654f5">\
 \
 Cell `width & height` means the size of one cell (picture will be split into cells) on a final picture, where our app will put one of the source images, which fits best. The `URL` means a URL of the final picture, made up of other images. `Generate` button runs the process. `Download` button downloads final picture into the png file.\
 \
