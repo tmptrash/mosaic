@@ -37,9 +37,9 @@ function onErr(cells) {
 }
   
 function onImg(cells, e) {
-  cells.canvas = canvas(e.target.width, e.target.height)
-  cells.ctx = cells.canvas.getContext('2d', { willReadFrequently: true })
   const img = e.target
+  cells.canvas = canvas(img.width, img.height)
+  cells.ctx = cells.canvas.getContext('2d', { willReadFrequently: true })
   const map = cells.map
   let w = cells.cellWidth
   let h = cells.cellHeight
