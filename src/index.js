@@ -12,22 +12,20 @@ const RULES = [
 ]
 
 function App() {
-  const imgs = Imgs()
-  const cells = Cells()
-  const m = {}
-  mix(m, {
-    imgs,
-    cells,
+  const a = {}
+  mix(a, {
+    imgs: Imgs(),
+    cells: Cells(),
     cellWidthEl: el(CFG.cellWidthQuery),
     cellHeightEl: el(CFG.cellHeightQuery),
     urlEl: el(CFG.imgUrlQuery),
     listeners: [
-      [CFG.genQuery, 'click', fn(onGenerate, m)],
-      [CFG.downloadQuery, 'click', fn(onDownload, cells)]
+      [CFG.genQuery, 'click', fn(onGenerate, a)],
+      [CFG.downloadQuery, 'click', fn(onDownload, a)]
     ]
   })
-  ons(m.listeners)
-  return m
+  ons(a.listeners)
+  return a
 }
 
 function onGenerate(a) {
@@ -47,8 +45,8 @@ function onGenerate(a) {
   }
 }
 
-function onDownload(cells) {
-  if (!cells.map.length) {
+function onDownload(a) {
+  if (!a.cells.map.length) {
     log('Generate image first', true)
     return
   }
@@ -73,7 +71,4 @@ function validate(a) {
   return true
 }
 
-//
-// Entry point to the Photo Mosaic app
-//
 const app = App()
