@@ -1,5 +1,5 @@
 # mosaic
-Photo mosaic algorithm implementation in pure JS. A photomosaic, is a digital image that is made up of other digital images, pieced together by software. Photomosaics are generally credited to Robert Silvers, who developed the technique while he was a student at MIT. 
+Photo mosaic algorithm implementation in pure JS. A photomosaic, is a digital image that is made up of other digital images, pieced together by software. Photomosaics are generally credited to Robert Silvers, who developed the technique while he was a student at MIT. Main algorithm was picked [here](https://drdobbs.com/understanding-photomosaics/184404848).
 
 # how to run
 Prepare a folder with jpg images (in our example it's called `imgs`) in this format `nXXX.jpg`. Where `XXX` it's an image index number starting from 0. For example: `n0.jpg, n1.jpg` and so on. We will use them as a source images to build the final (big) picture. Find as many images as you can, because it affects the final picture quality. Install dependencies and run local http-server with `imgs` folder as a parameter. Don't forget to add `--cors` parameter in the end. Run the mosaic app and go to your browser URL `localhost:port` and you will see this simple UI:\
