@@ -10,7 +10,7 @@ input, button {
   height: 22px;
   vertical-align: middle;
   position: relative;
-  border-radius: 22px;
+  border-radius: 7px;
   padding: 0 10px;
 }
 .content {

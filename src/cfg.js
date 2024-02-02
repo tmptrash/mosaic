@@ -6,6 +6,5 @@ export default {
   cellHeightQuery: '#cell-height',
   genQuery: '#generate',
   downloadQuery: '#download',
-  mapQuery: '#index',
   statusQuery: '#inf'
 }
