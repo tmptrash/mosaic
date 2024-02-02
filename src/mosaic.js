@@ -6,7 +6,7 @@ export function map(imgs, cells) {
   canvas.width = cells.imgWidth
   canvas.height = cells.imgHeight
   const map = cells.map
-  const ctx = canvas.getContext('2d')
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })
   const w = cells.cellWidth
   const h = cells.cellHeight
   let i = 0

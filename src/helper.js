@@ -21,7 +21,7 @@ export function el(query) {
   return document.querySelector(query)
 }
 
-export function canvas(w, h) {
+export function canvas(w = 1024, h = 1024) {
   const canvas = document.createElement('canvas')
   canvas.width = w
   canvas.height = h

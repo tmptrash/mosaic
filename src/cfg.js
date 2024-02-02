@@ -7,7 +7,5 @@ export default {
   genQuery: '#generate',
   downloadQuery: '#download',
   mapQuery: '#index',
-  statusQuery: '#inf',
-  imgMaxWidth: 1024,
-  imgMaxHeight: 1024 
+  statusQuery: '#inf'
 }

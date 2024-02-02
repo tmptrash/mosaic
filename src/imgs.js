@@ -2,14 +2,14 @@ import CFG from './cfg'
 import { inf, canvas, fn, mix, load, color } from './helper'
 
 export function Imgs() {
-  const c = canvas(CFG.imgMaxWidth, CFG.imgMaxHeight)
+  const c = canvas()
   const imgs = {}
   return mix(imgs, {
     map: [],
     imgs: [],
     server: null,
     canvas: c,
-    ctx: c.getContext('2d'),
+    ctx: c.getContext('2d', { willReadFrequently: true }),
     file: 0,
     onImg: fn(onImg, imgs),
     onErr: fn(onErr, imgs),
@@ -35,9 +35,12 @@ function onErr(imgs) {
 }
 
 function onImg(imgs, e) {
+  const img = e.target
   inf(`Processed: n${imgs.file}.jpg`)
-  imgs.map.push(...color(imgs.ctx, e.target))
-  imgs.imgs.push(e.target)
+  imgs.canvas.width = img.width
+  imgs.canvas.height = img.height
+  imgs.map.push(...color(imgs.ctx, img))
+  imgs.imgs.push(img)
   imgs.file++
   load(`${imgs.server}/n${imgs.file}.jpg`, imgs.onImg, imgs.onErr)
 }
