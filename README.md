@@ -14,4 +14,5 @@ Cell `width & height` means the size of one cell (picture will be split into cel
 `npm run build` - to build mosaic in production
 
 # screenshot
-![mosaic-me12x12](https://github.com/tmptrash/mosaic/assets/1142545/8eadcb90-551b-4282-b257-096dde8946d1)
+![mosaic-me12x12](https://github.com/tmptrash/mosaic/assets/1142545/c2ffb246-b731-4d2c-b226-619afb787862)
+
