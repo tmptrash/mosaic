@@ -34,9 +34,9 @@ input, button {
 .cell-input {
   width: 30px;
 }
-#inf {
+#log {
   color: rgb(52 182 81);
 }
-#inf.err {
+#log.err {
   color: rgb(244 85 77);
 }

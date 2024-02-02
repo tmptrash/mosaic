@@ -6,5 +6,5 @@ export default {
   cellHeightQuery: '#cell-height',
   genQuery: '#generate',
   downloadQuery: '#download',
-  statusQuery: '#inf'
+  statusQuery: '#log'
 }

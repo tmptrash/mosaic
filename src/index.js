@@ -1,6 +1,6 @@
 import './../index.css'
 import CFG from './cfg'
-import { ons, fn, mix, el, isInt, inf } from './helper'
+import { ons, fn, mix, el, isInt, log } from './helper'
 import { Imgs, map as mapImgs } from './imgs'
 import { Cells, map as mapCells } from './cells'
 import { map as mapMosaic } from './mosaic'
@@ -43,13 +43,13 @@ function onGenerate(a) {
     else mapCells(a.cells, cw, ch, url)
      .then(fn(onCellsDone, a))
   } catch (e) {
-    inf(e, true)
+    log(e, true)
   }
 }
 
 function onDownload(cells) {
   if (!cells.map.length) {
-    inf('Generate image first', true)
+    log('Generate image first', true)
     return
   }
   const link = el(CFG.linkQuery)
@@ -60,13 +60,13 @@ function onDownload(cells) {
 
 function onCellsDone(a) {
   mapMosaic(a.imgs, a.cells)
-  inf(`Used: ${a.imgs.imgs.length} imgs`)
+  log(`Used: ${a.imgs.imgs.length} imgs`)
 }
 
 function validate(a) {
   for (let r of RULES) {
     if (r[0](a)) {
-      inf(r[1](a), true)
+      log(r[1](a), true)
       return false
     }
   }

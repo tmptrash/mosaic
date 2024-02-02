@@ -58,7 +58,7 @@ export function isInt(n) {
   return Number.isInteger(parseInt(n))
 }
 
-export function inf(s, err = false) {
+export function log(s, err = false) {
   const infEl = el(CFG.statusQuery)
   infEl.innerText = s
   infEl.className = (err ? 'err' : '')
