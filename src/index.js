@@ -6,9 +6,9 @@ import { Cells, map as mapCells } from './cells'
 import { map as mapMosaic } from './mosaic'
 
 const RULES = [
-  [a => !isInt(a.cellWidthEl.value), a => `Invalid cell width: "${a.cellWidthEl.value}".`],
-  [a => !isInt(a.cellHeightEl.value), a => `Invalid cell height: "${a.cellHeightEl.value}".`],
-  [a => a.urlEl.value === '', a => `Error loading image: "${a.urlEl.value}".`]
+  [a => !isInt(a.cellWidthEl.value) || +a.cellWidthEl.value < 1, a => `Invalid cell width: "${a.cellWidthEl.value}"`],
+  [a => !isInt(a.cellHeightEl.value) || a.cellHeightEl.value < 1, a => `Invalid cell height: "${a.cellHeightEl.value}"`],
+  [a => a.urlEl.value === '', a => `Error loading image: "${a.urlEl.value}"`]
 ]
 
 function App() {
