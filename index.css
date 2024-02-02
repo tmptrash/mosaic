@@ -5,6 +5,13 @@ body {
 }
 input, button {
   margin-right: 20px;
+  border: none;
+  outline: none;
+  height: 22px;
+  vertical-align: middle;
+  position: relative;
+  border-radius: 22px;
+  padding: 0 10px;
 }
 .content {
   display: flex;
@@ -29,7 +36,6 @@ input, button {
 }
 #inf {
   color: rgb(52 182 81);
-  margin-left: 20px;
 }
 #inf.err {
   color: rgb(244 85 77);
