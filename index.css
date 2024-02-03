@@ -16,8 +16,7 @@ input, button {
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .img-url {
@@ -27,8 +26,9 @@ input, button {
   margin-bottom: 10px;
 }
 .cell {
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 .cell-input {
