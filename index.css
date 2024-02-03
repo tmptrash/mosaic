@@ -13,12 +13,15 @@ input, button {
   border-radius: 7px;
   padding: 0 10px;
 }
+canvas {
+  margin: auto;
+}
+
 .content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .img-url {
   width: 380px;
 }
